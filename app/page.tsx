@@ -94,7 +94,7 @@ export default function Home() {
 
   async function connectWallet() {
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.BrowserProvider((window as any) .ethereum);
       const accounts = await provider.send('eth_requestAccounts', []);
       const userAddress = accounts[0];
       setAccount(userAddress);
@@ -118,7 +118,7 @@ export default function Home() {
   async function registerWallet() {
     try {
       setLoading(true);
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.BrowserProvider((window as any) .ethereum);
       const signer = await provider.getSigner();
       const registry = new ethers.Contract(REGISTRY_ADDRESS, REGISTRY_ABI, signer);
       const tx = await registry.register();
