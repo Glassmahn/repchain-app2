@@ -135,7 +135,7 @@ export default function Home() {
   async function submitReview() {
     try {
       setLoading(true); setStatus('');
-      const provider = new ethers.BrowserProvider(window as any) .ethereum);
+      const provider = new ethers.BrowserProvider((window as any) .ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(SCORE_ADDRESS, SCORE_ABI, signer);
       const tx = await contract.submitReview(targetAddress, reviewScore, category, '');
